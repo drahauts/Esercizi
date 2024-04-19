@@ -58,7 +58,7 @@ def print_numbers(l: list):
     for i in l:
         print(i)
 
-print_numbers([1, 2, 3, 4, 5, 6, 7])
+print_numbers([1, 2, 3])
 
 
 """
@@ -80,3 +80,33 @@ def check_each(l: list):
 
 
 check_each([4, 23, 5, 7, 13, 65])
+
+
+"""
+Exercise 5
+Write a function add_one(). It takes an integer as argument. The function adds 1 to
+the integer and returns it.
+Write another function add_one_to_list(). It takes a list of integers as argument.
+Define a variable new_list in this function.
+Using a for loop, iterate through the argument list.
+Using add_one(), fill new_list with integers from the argument list incremented
+by 1.
+Print new_list.
+
+Example:
+add_one_to_list([1, 2, 3])
+outtput >>> [2, 3, 4]
+"""
+
+def add_one(n: int):
+    return n + 1
+
+print(add_one(10))
+
+def add_one_to_list(l: list):
+    new_list: list = []
+    for i in l:  
+        new_list.append(add_one(i))
+    print(new_list)
+
+add_one_to_list([1, 2, 3])
