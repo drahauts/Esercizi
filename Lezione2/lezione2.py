@@ -162,3 +162,24 @@ print(world)
 # the number of people you’re inviting to dinner.
 
 print(len(names))
+
+# 3-10. Every Function: Think of things you could store in a list. For example, you could make a list of mountains,
+# rivers, countries, cities, languages, or anything else you’d like. Write a program that creates a list containing
+# these items and then uses each function introduced in this chapter at least once.
+
+def my_func_lesson2(my_list: list) -> list:
+    for i in my_list:
+        print(i.upper())
+        print(i.lower())
+    my_list.insert(0, "Roma")
+    my_list.append("Barcelona")
+    print(f"La lunghezza della mia lista adesso è {len(my_list)} ogetti")
+    print(sorted(my_list))
+    print(sorted(my_list, reverse = True))
+    my_list.sort(reverse= True)
+    print(my_list)
+    my_list.pop(3)
+    
+    return my_list
+
+print(my_func_lesson2(["New York", "Los Angeles", "Paris", "London", "Tokyo"]))  
