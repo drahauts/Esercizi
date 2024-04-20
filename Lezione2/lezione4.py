@@ -18,16 +18,17 @@ Using if / else, the function should print whether the number is bigger, smaller
 or equal to 5
 """
 
-def check_value(n):
-    if n > 5:
-        print(f"{n} è piu grande di 5")
-    elif n < 5:
-        print(f"{n} è piu piccolo di 5")
+def check_value(n, m):
+    if n > m:
+        print(f"{n} è piu grande di {m}")
+    elif n < m:
+        print(f"{n} è piu piccolo di {m}")
     else:
-        print(f"{n} è equevale a 5")
+        print(f"{n} è equevale a {m}")
    
 n: float = float(input("Inserisci un numero: "))
-check_value(n)
+m: float = float(input("Inserisci secondo numero: "))
+check_value(n, m)
 
 """
 Exercise 2
@@ -101,12 +102,12 @@ outtput >>> [2, 3, 4]
 def add_one(n: int):
     return n + 1
 
-print(add_one(10))
+print(add_one(12))
 
-def add_one_to_list(l: list):
+def add_one_to_list(l: list[int]) -> list[int]:
     new_list: list = []
-    for i in l:  
+    for i in l:
         new_list.append(add_one(i))
     print(new_list)
 
-add_one_to_list([1, 2, 3])
+add_one_to_list([10, 12, 14])
