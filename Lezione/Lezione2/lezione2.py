@@ -307,3 +307,32 @@ for name, num in favorite_number.items():
     print(f"I numeri preferiti di {name} è: ")
     for n in num:
         print(n)
+
+
+# 6-11. Cities: Make a dictionary called cities. Use the names of three cities as keys in your dictionary.
+# Create a dictionary of information about each city and include the country that the city is in, its approximate
+# population, and one fact about that city. The keys for each city’s dictionary should be something like country,
+# population, and fact. Print the name of each city and all of the information you have stored about it.
+
+cities: dict = {
+    "Roma" : {
+        "country" : "Italy",
+        "population" : "2.8 million",
+        "fact" : 'Rome is known as the "Eternal City"'
+    },
+    "Minsk" : {
+        "country" : "Belarus",
+        "population" : "2.0 million",
+        "fact" : "'Minsk is the capital and largest city of Belarus.'"
+    },
+    "New York" : {
+        "country" : "United States",
+        "population" : "8.4 million",
+        "fact" : "The Empire State Building has its own zip code."
+    }
+}
+
+for city, info in cities.items():
+    print(f"{city} - ")
+    for key, value in info.items():
+        print(f"{key.capitalize()}: {value}")
