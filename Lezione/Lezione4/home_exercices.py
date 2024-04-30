@@ -161,7 +161,33 @@ After calling the function, print both of your lists to show that
 the original list has retained its messages.
 """
 
-lista1 = send_messages.copy(lista)
+# lista1 = send_messages.copy(lista)
 
-print(lista)
-print(lista1)
+# print(lista)
+# print(lista1)
+
+
+"""
+8-12. Sandwiches: Write a function that accepts a list of items a person wants on a sandwich.
+The function should have one parameter that collects as many items as the function call provides,
+and it should print a summary of the sandwich that’s being ordered. Call the function three times, using a different number of arguments each time.
+"""
+
+def order_sandwich(*order_list: str):
+    sandwich_list = ", ".join(order_list)
+    print(f"Sandwiches have: {sandwich_list}")
+
+order_sandwich("hamburger", "patatine fritte", "mayo")
+order_sandwich("bacon", "pomodoro", "cipolla", "emmental")
+order_sandwich("cotoletta", "friarelli")
+
+"""
+8-13. User Profile:  Build a profile of yourself by calling build_profile(),
+using your first and last names and three other key-value pairs that describe you.
+All the values must be passed to the function as parameters. The function then must return a string such as "Eric Crow, age 45, hair brown, weight 67"
+"""
+def build_profile(*charateristhic: str):
+    my_charateristhic = ", ".join(charateristhic)
+    print(f"Name - {charateristhic}, age {charateristhic}, ")
+
+build_profile("Danila Rahautsou", "21", "blonde")
