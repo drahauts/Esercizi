@@ -22,6 +22,4 @@ def rotate_left(elements: list, k: int) -> list:
 
 print(rotate_left([1, 2, 3, 4, 5], 2))
 print(rotate_left([5, 3, 7, 2, 1, 4], 8))
-print(rotate_left([5,1], 2))
-# Original list : [1, 4, 6, 7, 2]
-# List after left rotate by 3 : [7, 2, 1, 4, 6]
+print(rotate_left([5, 1], 2))
