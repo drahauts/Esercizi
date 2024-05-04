@@ -11,15 +11,13 @@ ________________________________________________________________________________
 
 def remove_duplicates(lista: list) -> list:
     my_set = set()
-    no_duplicates: list = []
-    for elem in lista:
-        print(f"Il mio elem adesso e - {elem}")
-        print(f"Il mio set adesso e -{my_set}")
-        if elem not in my_set:
-            my_set.add(elem)
-            no_duplicates.append(elem)
-        
-    return no_duplicates
+    no_duplicat: list = []
+    for l in lista:
+        if l not in my_set:
+            my_set.add(l)
+            no_duplicat.append(l)
+    
+    return no_duplicat
 
 print(remove_duplicates([1, 2, 3, 1, 2, 4]))
 print(remove_duplicates([4, 5, 'a', 4, 6]))

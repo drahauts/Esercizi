@@ -15,7 +15,7 @@ def frequency_dict(elements: list) -> dict:
             frequenza[element] += 1
         else:
             frequenza[element] = 1
-    
+
     return frequenza
  
 print(frequency_dict(['mela', 'banana', 'mela']))               # {'mela': 2, 'banana': 1}

@@ -15,10 +15,11 @@ _________________________________________________________________
 """
 
 def rotate_left(elements: list, k: int) -> list:
-    if k >= len(elements):
+    if k > len(elements):
         k = k % len(elements)
-        print(k)
-    return elements[k: ] + elements[ : k]
+    
+    return elements[k : ] + elements[ : k]
+
 
 print(rotate_left([1, 2, 3, 4, 5], 2))
 print(rotate_left([5, 3, 7, 2, 1, 4], 8))
