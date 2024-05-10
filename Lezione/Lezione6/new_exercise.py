@@ -1,18 +1,23 @@
 class Person:
+        
     def __init__(self,
                  name: str,
                  cognome: str,
                  data_di_nascita: str,
-                 genere: str) -> None:
+                 genere: str,
+                 codice_fiscale: str) -> None:
         
         self.name: str = name
         self.cognome: str = cognome
-        self.data_di_nascita: str = data_di_nascita
+        self.data_di_nascita: str = data_di_nascita 
         self.genere: str = genere
-
+        self.codice_fiscale: str = codice_fiscale
 
     def calcola_età(self) -> int:
         return 10
+    
+    def __eq__(self, value: object) -> bool:
+        return value.codice_fiscale == self.codice_fiscale
     
     def __str__(self) -> str:
         return f"Person(nome: {self.name}, cognome: {self.cognome}, data_di_nascita: {self.data_di_nascita}, genere: {self.genere})"
@@ -36,6 +41,10 @@ class Dipendente(Person):
     def calcola_stipendio(self) -> float:
         return 600.0
     
+    def __eq__(self, value: object) -> bool:
+        return super().__eq__(value)
+    
+
     def __str__(self) -> str:
         return super().__str__()
 
@@ -59,6 +68,8 @@ class Professore(Dipendente):
         self.materia_insegnata = maretia_insegnata
         self.ore_di_lezione = ore_di_lezione
 
+    def __eq__(self, value: object) -> bool:
+        return super().__eq__(value)
     
     def __str__(self) -> str:
         return f"Professor {self.name}, {self.cognome}"
