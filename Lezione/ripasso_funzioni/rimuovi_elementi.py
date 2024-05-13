@@ -7,13 +7,10 @@ e il numero di volte che devono essere rimossi come valori.
 def rimuovi_elementi(lista: list[int], da_rimuovere: dict[int:int]) -> list[int]:
     # new_list: list[int] = lista.copy()
     for key, value in da_rimuovere.items():
-        while value > 0:
-            if key in lista:
-                lista.remove(key)
-                value -= 1
-            else:
-                return lista
-
+        while value > 0 and key in lista:
+            lista.remove(key)
+            value -= 1
+        
     return lista
 
 #print(rimuovi_elementi([1, 2, 3, 2, 4], {2: 2}))

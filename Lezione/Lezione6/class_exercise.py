@@ -1,122 +1,92 @@
-"""
-9-1. Restaurant: Make a class called Restaurant. The __init__() method for Restaurant should store two attributes:
-a restaurant_name and a cuisine_type. Make a method called describe_restaurant() that prints these two pieces of information,
-and a method called open_restaurant() that prints a message indicating that the restaurant is open. Make an instance called
-restaurant from your class. Print the two attributes individually, and then call both methods.
-"""
+"""9-1. Restaurant: Make a class called Restaurant.
+The __init__() method for Restaurant should store two attributes:
+a restaurant_name and a cuisine_type. Make a method called describe_restaurant()
+that prints these two pieces of information, and a method called open_restaurant()
+that prints a message indicating that the restaurant is open. Make an instance
+called restaurant from your class. Print the two attributes individually, and then call both methods."""
 
 class Restaurant:
-    def __init__(self, restaurant_name: str, cuisine_type, number_served: int = 0):
+    def __init__(self, restaurant_name: str, cuisine_type: str, number_served: int = 0) -> None:
         self.restaurant_name = restaurant_name
         self.cuisine_type = cuisine_type
         self.number_served = number_served
 
     def describe_restaurant(self):
-        print(f"IL ristorante è {self.restaurant_name}, con la sua tipica {self.cuisine_type}")
-        
-    def set_number_served(self, new_client_served):
-        self.number_served = new_client_served
+        print(f"Il nome del ristorante {self.restaurant_name}, e la cucina di tipo {self.cuisine_type}")
 
-    def increment_number_served(self, clients: int):
-        self.number_served += clients
-    
     def open_restaurant(self):
-        print("Restourant is open!")
+        print("Aperto")
 
     def __str__(self) -> str:
-        return f"Ristorante: {self.restaurant_name}, Cucina: {self.cuisine_type}, Clienti oggi: {self.number_served}"
+        return f"Restaurant(name = {self.restaurant_name}, cucina = {self.cuisine_type})"
 
-ristorante = Restaurant(restaurant_name= "Zero Nodi", cuisine_type= "cucina Napoletana")
-ristorante.describe_restaurant()
-ristorante.open_restaurant()
-print(ristorante)
-
-"""
-9-2. Three Restaurants: Start with your class from Exercise 9-1.
-Create three different instances from the class, and call describe_restaurant() for each instance.
-"""
-
-ristorante_milano = Restaurant(restaurant_name= "Milan City", cuisine_type= "cucina Milanese")
-ristorante_milano.describe_restaurant()
-print(ristorante_milano)
-
-mcDonalds = Restaurant(restaurant_name= "McDonalds", cuisine_type= "cucina Fast Food")
-mcDonalds.describe_restaurant()
-print(mcDonalds)
-
-kebabbaro = Restaurant(restaurant_name= "Zaza", cuisine_type= "cucina Turca")
-kebabbaro.describe_restaurant()
-print(kebabbaro)
+restaurant = Restaurant(restaurant_name="Zero Nodi", cuisine_type= "napoletana")
+print(restaurant.restaurant_name)
+print(restaurant.cuisine_type)
 
 """
-9-3. Users: Make a class called User. Create two attributes called first_name and last_name,
-and then create several other attributes that are typically stored in a user profile.
-Make a method called describe_user() that prints a summary of the user’s information.
-Make another method called greet_user() that prints a personalized greeting to the user.
-Create several instances representing different users, and call both methods for each user.
+9-2. Three Restaurants:
+Start with your class from Exercise 9-1.
+Create three different instances from the class,
+and call describe_restaurant() for each instance.
+"""
+# Crea tre diverse istanze dalla classe e chiama describe_restaurant() per ogni istanza.
+
+ristorante1 = Restaurant(restaurant_name= "Antico Falcone", cuisine_type= "Romana")
+ristorante2 = Restaurant(restaurant_name= "Arcobaleno", cuisine_type= "Olandese")
+ristorante3 = Restaurant(restaurant_name= "Old Wild West", cuisine_type= "Fast Food")
+
+ristorante1.describe_restaurant()
+ristorante2.describe_restaurant()
+ristorante3.describe_restaurant()
+
+"""
+9-3. Users: Make a class called User.
+Create two attributes called first_name and last_name,
+and then create several other attributes that are typically
+stored in a user profile. Make a method called describe_user()
+that prints a summary of the user’s information. Make another
+method called greet_user() that prints a personalized greeting to
+the user. Create several instances representing different users, and call both methods for each user.
 """
 
 class User:
-
-    def __init__(self, first_name: str, last_name: str, age: int, gender: str):
+    def __init__(self, first_name: str, last_name: str, genere: str, age: int) -> None:
         self.first_name = first_name
         self.last_name = last_name
+        self.genere = genere
         self.age = age
-        self.gender = gender
 
     def describe_user(self):
-        print(f"Name: {self.first_name}\nLastname: {self.last_name}\nAge: {self.age}\nGender: {self.gender}")
-        
+        print(f"Utente:\nnome - {self.first_name}\ncognome - {self.last_name}\ngenere - {self.genere}\netà - {self.age}")
 
     def greet_user(self):
-        print(f"Hello, {self.first_name} {self.last_name}")
+        return f"Ciao {self.first_name} {self.last_name}! Benvenuto nel nostro sito"
 
     def __str__(self) -> str:
-        return f"User(first_name = {self.first_name}), last_name = {self.last_name}, age = {self.age}, gender = {self.gender}"
+        return f"User(nome= {self.first_name.capitalize()}, cognome= {self.last_name.capitalize()}, genere= {self.genere}, eta= {self.age})"
 
-pemoluxx = User(first_name= "Danila", last_name= "Rahautsou", age= 21, gender= "M")
-pemoluxx.describe_user()
-pemoluxx.greet_user()
-print(pemoluxx)
 
-cr7 = User("Cristiano", "Ronaldo", 39, "M")
-cr7.describe_user()
-cr7.greet_user()
-print(cr7)
-
-topolino = User("Mickey", "Mouse", 777, "Non specificato")
-topolino.describe_user()
-topolino.greet_user()
-print(topolino)
-
+utente1 = User(first_name="Danila", last_name="Rahautsou", genere="M", age= 21)
+print(utente1)
+utente1.describe_user()
+utente2 = User(first_name="Leo", last_name= "Messi", genere= "M", age= 35)
+print(utente2)
+print(utente2.greet_user())
 
 """
-
-9-4. Обслуженные клиенты: Начните с вашей программы из Упражнения 9-1. Добавьте атрибут с именем
-number_served со значением по умолчанию 0. Создайте экземпляр с именем restaurant из этого класса.
-Выведите количество клиентов, которых обслужил ресторан, а затем измените это значение и выведите его снова.
-Добавьте метод с именем set_number_served(), который позволяет установить количество обслуженных клиентов.
-Вызовите этот метод с новым числом и снова выведите значение. Добавьте метод с именем increment_number_served(),
-который позволяет увеличить количество обслуженных клиентов. Вызовите этот метод с любым числом, которое может
-представлять, сколько клиентов было обслужено, скажем, за день работы.
+9-4. Number Served:
+Start with your program from Exercise 9-1.
+Add an attribute called number_served with a default value of 0.
+Create an instance called restaurant from this class. Print the
+number of customers the restaurant has served, and then change
+this value and print it again. Add a method called set_number_served()
+that lets you set the number of customers that have been served.
+Call this method with a new number and print the value again.
+Add a method called increment_number_served() that lets you increment
+the number of customers who’ve been served. Call this method with any
+number you like that could represent how many customers were served in, say, a day of business. 
 """
 
-restaurant = Restaurant(restaurant_name= "Antico Falcone", cuisine_type= "cucina Romana", number_served= 46)
-
-print(restaurant)
-restaurant.number_served = 59
-print(restaurant)
-
-"""
-def set_number_served(self, new_client_served):
-        self.number_served = new_client_served
-
-    def increment_number_served(self, clients: int):
-        self.number_served += clients
-"""
-
-restaurant.set_number_served(42)
-print(f"Clienti oggi: {restaurant.number_served}")
-
-restaurant.increment_number_served(12)
-print(restaurant)
+ristorante_utenti = Restaurant(restaurant_name="Stella d'Oriente", cuisine_type= "cinese", number_served= 25)
+print(ristorante_utenti.number_served)
