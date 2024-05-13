@@ -14,6 +14,9 @@ class Restaurant:
     def describe_restaurant(self):
         print(f"Il nome del ristorante {self.restaurant_name}, e la cucina di tipo {self.cuisine_type}")
 
+    def set_number_served(self, new_user_served: int):
+        self.number_served = new_user_served
+    
     def open_restaurant(self):
         print("Aperto")
 
@@ -90,3 +93,8 @@ number you like that could represent how many customers were served in, say, a d
 
 ristorante_utenti = Restaurant(restaurant_name="Stella d'Oriente", cuisine_type= "cinese", number_served= 25)
 print(ristorante_utenti.number_served)
+
+"""
+Aggiungi un metodo chiamato set_number_served() che ti permetta di impostare il numero di clienti che sono stati serviti.
+"""
+print(ristorante_utenti.set_number_served(27))
