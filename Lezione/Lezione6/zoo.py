@@ -1,60 +1,97 @@
-class Zoo:
-    def __init__(self, fences:int, zoo_keepers: str) -> None:
-        self.fences = fences
-        self.zoo_keepers = zoo_keepers
-
-"""
-2. Animal: questa classe rappresenta un animale nello zoo.
-Ogni animale ha questi attributi: name, species, age, height,
-width, preferred_habitat, health che è uguale a round(100 * (1 / age), 3).
-"""
-
 class Animal:
-    def __init__(self, name: str, species: str, age: float, height: float, width: float, preferred_habitat: str, health: int):
+    def __init__(self, name, species, age, height, width, preferred_habitat, health: None) -> None:
         self.name = name
         self.species = species
         self.age = age
         self.height = height
         self.width = width
         self.preferred_habitat = preferred_habitat
-        self.health = round(100 * (1 / age), 3)
+        self.health = round(100 * (1 / age) * 3)
 
-    def __str__(self) -> str:
-        return f"Animal(nome - {self.name}, specie - {self.species}, età - {self.age}, altezza - {self.height}, larghezza - {self.width}, habbitat preferito - {self.preferred_habitat}, stato della salute - {self.health})"
-
-
-"""
-3. Fence: questa classe rappresenta un recinto dello zoo in cui sono tenuti gli animali.
-I recinti possono contenere uno o più animali. I recinti possono hanno gli attributi area, temperature e habitat.
-"""
-
-class Fence:
-    def __init__(self, area: float, tempreature: float, habitat: str) -> None:
+class Fence:    # Recinto
+    def __init__(self, area, temperetature, habitat) -> None:
         self.area = area
-        self.tempreature = tempreature
+        self.temperetature = temperetature
         self.habitat = habitat
-
-
-"""
-ZooKeeper: questa classe rappresenta un guardiano dello zoo responsabile della gestione dello zoo.
-I guardiani dello zoo hanno un name, un surname, e un id. Essi possono nutrire gli animali,
-pulire i recinti e svolgere altri compiti nel nostro zoo virtuale.
-"""
+        self.animals = []
+        self.totale_conto = area
 
 
 class ZooKeeper:
-    def __init__(self, name: str, surname: str, id: int):
+    def __init__(self, name, surname, id) -> None:
         self.name = name
         self.surname = surname
         self.id = id
+        
 
-    def add_animal(animal: Animal, fence: Fence):
-        pass
+    def add_animal(self, animal: Animal, fence: Fence):
+        animal_area = animal.width * animal.height
+        if animal.preferred_habitat == fence.habitat and fence.area > animal_area :
+            fence.animals.append(animal)
+            print(f"L'animale {animal.name} e stato aggiunto al nuovo recinto {fence.habitat}")
+        else:
+            print(f"L'animale {animal.name} non puo essere aggiunto al recinto {fence.habitat}")
+        
+    def remove_animal(self, animal: Animal, fence: Fence):
+        # area_animal = animal.width * animal.height
+        # fence_area= fence.width * fence.height
+        # new_fence_area = area_animal + fence_area
+        if animal in fence.animals:
+            fence.animals.remove(animal)
+            # fence.area = new_fence_area
+            print(f"Animale {animal.name} è stato corretamente tolto dal recinto {fence.habitat}")
+        else:
+            print(f"Animale {animal.name} non è presente nel recinto {fence.habitat}")
+        
 
-"""
-1. add_animal(animal: Animal, fence: Fence) (Aggiungi nuovo animale):
-consente al guardiano dello zoo di aggiungere un nuovo animale allo zoo.
-L'animale deve essere collocato in un recinto adeguato in base alle esigenze
-del suo habitat e se c'è ancora spazio nel recinto, ovvero se l'area del
-recinto è ancora sufficiente per ospitare questo animale.
-"""
+    
+
+    def feed(self, animal: Animal):
+        if self.fence.area >= animal.area:
+            animal.health += 1
+            animal.width *= 1.02
+            animal.height *= 1.02
+            self.fence.area -= animal.area
+            print(f"Animale {animal.name} e stato nutrito con sucesso")
+        else:
+            print(f"Animale {animal.name} non può essere nutrito ")
+
+    def clean_fence(self, fence: Fence):
+        index_trash: float = 0.0
+        
+        if fence and isinstance(fence, Fence):
+            if fence.area > 0:
+                index_trash =  (fence.totale_conto - fence.area)/ fence.area 
+            elif fence.area == 0:
+                index_trash = fence.totale_conto
+            
+            return index_trash
+    
+
+    def describe_zoo(self):
+        print("Guardini dello Zoo: ")
+        for guardini in self.zoo_keepers:
+            print(f"Nome - {guardini.name}\nCognome - {guardini.surname}\nId: {guardini.id}")
+        
+        print("I recinti dello Zoo: ")
+        for recinti in self.fences:
+            print(f"Recinti:\nArea - {recinti.area}\nTemperatura - {recinti.temprerature}\nHabitat - {self.habitat}")
+        
+        print("Animali dello Zoo: ")
+        for animale in self.animals:
+            print(f"Nome {animale.name}, specie - {animale.species}")
+
+class Zoo:
+    def __init__(self, fences = None, zoo_keepers = None) -> None:
+        self.fences = fences
+        self.zoo_keepers = zoo_keepers
+
+
+guardiano = ZooKeeper(name="Lorenzo", surname="Maggi", id=1234)
+lion = Animal("Leo", "Lion", 5, 1.5, 2, "Savannah", None)
+fence1 = Fence(100, 25, "Savannah")
+
+guardiano.add_animal(lion, fence1)
+guardiano.remove_animal(lion, fence1)
+#guardiano.feed(lion)
+print(guardiano.clean_fence(fence1))
