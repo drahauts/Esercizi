@@ -8,6 +8,6 @@ def binary_to_dec(x: str):
         num += int(x[i]) * 2**(len(x)-i-1)
     return num
 
-print(binary_to_dec("10001"))
+print(binary_to_dec("10011"))
 print(binary_to_dec("1100"))
-print(binary_to_dec("1010"))
+print(binary_to_dec("111"))

@@ -1,8 +1,8 @@
 import random
 
 def tartaruga(posizione: int):
-    movim_tart: int = random.randint(1,10)
-
+    # movim_tart: int = random.randint(1,10)
+    movim_tart = 6
     if 1 <= movim_tart <= 5:
         posizione += 3          # Passo veloce (50%): avanza di 3 quadrati.
     elif 6 <= movim_tart <= 7:
@@ -11,6 +11,8 @@ def tartaruga(posizione: int):
         posizione += 1          # Passo lento (30%): avanza di 1 quadrato
 
     return max(1, posizione)
+
+print(tartaruga(2))
 
 def lepre(posizione: int):
     movim_lepre: int = random.randint(1,10)
