@@ -1,8 +1,8 @@
 import random
 
 def tartaruga(posizione: int):
-    # movim_tart: int = random.randint(1,10)
-    movim_tart = 6
+    movim_tart: int = random.randint(1,10)
+    # print("tartaruga: ", movim_tart)
     if 1 <= movim_tart <= 5:
         posizione += 3          # Passo veloce (50%): avanza di 3 quadrati.
     elif 6 <= movim_tart <= 7:
@@ -12,11 +12,12 @@ def tartaruga(posizione: int):
 
     return max(1, posizione)
 
-print(tartaruga(2))
+
+
 
 def lepre(posizione: int):
     movim_lepre: int = random.randint(1,10)
-
+    # print("lepre: ",movim_lepre,"\n", "#" * 70)
     if 1<= movim_lepre <= 2:
         pass                    # Riposo (20%): non si muove
     elif 3 <= movim_lepre <= 4:
@@ -31,25 +32,46 @@ def lepre(posizione: int):
     return max(1, posizione)
 
 
-"""
-Crea una funzione che stampa una lista di 70 posizioni.
-Inserisci la lettera 'T' alla posizione della tartaruga, la lettera 'H' alla posizione della lepre, e il carattere '_' nelle posizioni libere.
-Se entrambi gli animali si trovano sulla stessa posizione, stampa 'OUCH!!!' in quella posizione.
-
-Inizializza la corsia: Crea una lista di 70 elementi, tutti impostati su _.
-"""
-
 def mappa(mossa_tart: int, mossa_lep: int):
-    corsa: list[int] = ['_' for _ in range(70)]
-
+    # corsa: list = ['_' for _ in range(0, 70)]
+    corsa: list = ["_"] * 70
     if mossa_tart == mossa_lep:
-        corsa[mossa_lep - 1] = "OUCH!!!"    # Se la posizione e uguale
+        corsa[mossa_lep] = "OUCH!!!"    # Se la posizione e uguale
     else:
-        corsa[mossa_lep - 1] = 'H'          # LEPRA
-        corsa[mossa_tart - 1] = 'T'         # TARTARUGA
+        corsa[mossa_tart] = 'T'         # TARTARUGA
+        # print("posizione della tartaruga: ", mossa_tart)
+        corsa[mossa_lep] = 'H'          # LEPRA
+        # print("posizione della lepre: ", mossa_lep)
+        print('=' * 70)
 
-    print(''.join(corsa))
+    print('-'.join(corsa))
+    # print(corsa)
 
+# mappa(mossa_tart= 69, mossa_lep= 68)
+# mappa(mossa_tart= 0, mossa_lep= 1)
+# mappa(mossa_tart= 1, mossa_lep= 2)
 
 def gara():
-    print("BANG !!!!! AND THEY'RE OFF !!!!!")
+    print(" "* 25, "BANG !!!!! AND THEY'RE OFF !!!!!")
+    pos_tart = 1
+    pos_lep = 1
+
+    while True:
+        pos_tart = tartaruga(pos_tart)
+        pos_lep = lepre(pos_lep)
+        mappa(pos_tart, pos_lep)
+        print("posizioni l: ", pos_lep,"\npos Tart: " ,pos_tart)
+
+        if pos_tart >= 69 and pos_lep >= 69:
+            print("IT'S A TIE.")
+            break
+        elif pos_tart >= 69:
+            pos_tart = 69
+            print("TORTOISE WINS! || VAY!!!")
+            break
+        elif pos_lep >= 69:
+            pos_lep = 69
+            print("HARE WINS || YUCH!!!")
+            break
+
+gara()
