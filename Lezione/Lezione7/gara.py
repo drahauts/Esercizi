@@ -2,7 +2,7 @@ import random
 
 def tartaruga(posizione: int):
     step_T: int = random.randint(1, 10)
-    print(f"Tartaruga = {step_T}")
+    # print(f"Tartaruga = {step_T}")
     if 1 <= step_T <= 5:
         posizione += 3
     elif 6 <= step_T <= 7:
@@ -16,7 +16,7 @@ def tartaruga(posizione: int):
 
 def lapre(posizione: int):
     step_L: int = random.randint(1, 10)
-    print(f"Lepre = {step_L}")
+    # print(f"Lepre = {step_L}")
     if 1 <= step_L <= 2:
         pass
     elif 3 <= step_L <= 4:
@@ -62,17 +62,17 @@ def gara():
         mossa_Tart = tartaruga(mossa_Tart)
         mossa_Lepr = lapre(mossa_Lepr)
         mappa(mossa_Tart, mossa_Lepr)
-        print(f"Posizione di tartaruga e {mossa_Tart}, lepra {mossa_Lepr}", "\n", "===" * 30)
+        # print(f"Posizione di tartaruga e {mossa_Tart}, lepra {mossa_Lepr}", "\n", "===" * 30)
         if mossa_Tart >= 69 and mossa_Lepr >= 69:
             print("IT'S A TIE.")
             break
         elif mossa_Tart >= 69:
             mossa_Tart = 69
-            print("TORTOISE WINS! || VAY!!!")
+            print("\n"* 2 ,"TORTOISE WINS! || VAY!!!")
             break
         elif mossa_Lepr >= 69:
             mossa_Lepr = 69
-            print("HARE WINS || YUCH!!!")
+            print("\n" * 2, "HARE WINS || YUCH!!!")
             break
 
 
