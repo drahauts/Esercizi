@@ -1,8 +1,38 @@
 import random
 
-def tartaruga(posizione: int):
+
+
+
+ostacoli: dict[int] = {
+    15: -3,
+    30: - 5,
+    45 : -7
+    }
+
+bonus: dict[int] = {
+    10: 5, 
+    23 : 3,
+    50: 10
+}
+
+def ostacoli(posizione):
+    if posizione in ostacoli:
+        posizione += ostacoli[posizione]
+        if posizione < 1:
+            posizione = 1
+    elif posizione in bonus:
+        posizione += bonus[posizione]
+        if posizione > 69:
+            posizione = 69
+    
+    return posizione
+
+
+def tartaruga(posizione: int, energia, meteo):
     step_T: int = random.randint(1, 10)
-    # print(f"Tartaruga = {step_T}")
+    meteo = "sole"
+    energia = 100
+    
     if 1 <= step_T <= 5:
         posizione += 3
     elif 6 <= step_T <= 7:
@@ -38,7 +68,7 @@ def lapre(posizione: int):
 def mappa(mov_t: int, mov_l: int):
     percorso: list = ["_"] * 70
 
-    if mov_t > 69:
+    if mov_t > 69 :
         mov_t = 69
     if mov_l > 69:
         mov_l = 69
@@ -75,5 +105,3 @@ def gara():
             print("\n" * 2, "HARE WINS || YUCH!!!")
             break
 
-
-gara()

@@ -48,4 +48,3 @@ account_3 = ContoBancario(1234567890, 0, "Pluto")
 ContoBancario.get_total_accounts()
 ContoBancario.valida_account(1234567890)
 ContoBancario.valida_account("123456789")
-
