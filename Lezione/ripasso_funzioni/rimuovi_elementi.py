@@ -17,3 +17,7 @@ def rimuovi_elementi(lista: list[int], da_rimuovere: dict[int:int]) -> list[int]
 #print(rimuovi_elementi([1, 1, 1, 1], {1: 2}))
 
 print(rimuovi_elementi([1, 2, 3, 2, 4], {2: 1}))
+"""
+The first step is to open Visual Studio Code,
+and Click Settings at the bottom left. Click Settings.
+Click Auto save dropdown. Select how you want your File to auto save."""
