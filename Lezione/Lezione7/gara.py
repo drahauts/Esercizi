@@ -1,5 +1,6 @@
 import random
 
+<<<<<<< HEAD
 
 
 
@@ -37,34 +38,46 @@ def tartaruga(posizione: int, energia, meteo):
         posizione += 3
     elif 6 <= step_T <= 7:
         posizione -= 6
+=======
+def pos_Taruga(posizione: int):
+    mossa: int = random.randint(1,10)
+    
+    if 1 <= mossa <= 5:
+        posizione += 3              # Passo veloce (50%): avanza di 3 quadrati
+    elif 6 <= mossa <= 7:
+        posizione -= 6              # Scivolata (20%): arretra di 6 quadrati
+>>>>>>> 9081c67 (lol)
         if posizione < 1:
-            posizione = 1
-    elif 8 <= step_T <= 10:
-        posizione += 1
+            posizione = 1           # Non può andare sotto il quadrato 1
+    elif 8 <= mossa <= 10:
+        posizione += 1              # Passo lento (30%): avanza di 1 quadrato
 
     return posizione
 
-def lapre(posizione: int):
-    step_L: int = random.randint(1, 10)
-    # print(f"Lepre = {step_L}")
-    if 1 <= step_L <= 2:
-        pass
-    elif 3 <= step_L <= 4:
-        posizione += 9
-    elif step_L == 5:
-        posizione -= 12
+def lepre(posizione: int):
+    mossa: int = random.randint(1, 10)
+    
+    if 1 <= mossa <= 2:
+        pass                        # Riposo (20%): non si muove.
+    elif 3 <= mossa <= 4:
+        posizione += 9              # Grande balzo (20%): avanza di 9 quadrati.
+    elif mossa == 5:
+        posizione -= 12             # Grande scivolata (10%): arretra di 12 quadrati.
         if posizione < 1:
-            posizione = 1
-    elif 6 <= step_L <= 8:
-        posizione += 1
-    elif 9 <= step_L <= 10:
-        posizione -= 2
+            posizione = 1           # Non può andare sotto il quadrato 1.
+    elif 6 <= mossa <= 8:
+        posizione += 1              # Piccolo balzo (30%): avanza di 1 quadrato.
+    elif 8 <= mossa <= 10:
+        posizione -= 2              # Piccola scivolata (20%): arretra di 2 quadrati. Non può andare sotto il quadrato 1.
         if posizione < 1:
             posizione = 1
 
     return posizione
 
+def percorso(mov_Tar, mov_Lep):
+    mappa: list = ["_"] * 70
 
+<<<<<<< HEAD
 def mappa(mov_t: int, mov_l: int):
     percorso: list = ["_"] * 70
 
@@ -75,33 +88,83 @@ def mappa(mov_t: int, mov_l: int):
 
     if mov_t == mov_l:
         percorso[mov_t] = "OUCH!!!"
+=======
+    if mov_Tar > 69:
+        mov_Tar = 69
+    if mov_Lep > 69:
+        mov_Lep = 69
+    
+    if mov_Tar == mov_Lep:
+        mappa[mov_Tar] = "OUCH!!!"
+>>>>>>> 9081c67 (lol)
     else:
-        percorso[mov_t] = "T"
-        percorso[mov_l] = "H"
+        mappa[mov_Tar] = "T"
+        mappa[mov_Lep] = "H"
 
-    print("".join(percorso))
-
+    print("".join(mappa))
 
 def gara():
-    print(" " * 30, "'BANG !!!!! AND THEY'RE OFF !!!!!'")
-
-    mossa_Tart = 1
-    mossa_Lepr = 1
-
+    print("'BANG !!!!! AND THEY'RE OFF !!!!!'")
+    
+    pos_T = 1
+    lepr = 1
+    
     while True:
-        mossa_Tart = tartaruga(mossa_Tart)
-        mossa_Lepr = lapre(mossa_Lepr)
-        mappa(mossa_Tart, mossa_Lepr)
-        # print(f"Posizione di tartaruga e {mossa_Tart}, lepra {mossa_Lepr}", "\n", "===" * 30)
-        if mossa_Tart >= 69 and mossa_Lepr >= 69:
+        pos_T = pos_Taruga(pos_T)
+        lepr = lepre(lepr)
+        percorso(pos_T, lepr)    
+        
+        if pos_T >= 69 and lepr >= 69:
             print("IT'S A TIE.")
             break
-        elif mossa_Tart >= 69:
-            mossa_Tart = 69
-            print("\n"* 2 ,"TORTOISE WINS! || VAY!!!")
+        elif pos_T >= 69:
+            pos_T = 69
+            print("TORTOISE WINS! || VAY!!!")
             break
-        elif mossa_Lepr >= 69:
-            mossa_Lepr = 69
-            print("\n" * 2, "HARE WINS || YUCH!!!")
+        elif lepr >= 69:
+            lepr = 69
+            print("HARE WINS || YUCH!!!")
             break
 
+<<<<<<< HEAD
+=======
+def variabilita_ambientale():
+    meteo = "sole"
+    count = 0
+    pos_T, pos_L = 1, 1
+
+    while True:
+        count += 1
+
+        if count % 10 == 0:
+            if meteo == "sole":
+                meteo = "pioggia"
+            else:
+                meteo = "sole"
+
+        pos_T = pos_Taruga(pos_T)
+        pos_L  = lepre(pos_L)
+
+        if meteo == "pioggia":
+            pos_T = pos_T - 1
+            if pos_T < 1:
+                pos_T = 1
+            pos_L = pos_L - 1
+            if pos_L < 1:
+                pos_L = 1
+        percorso(pos_T, pos_L)
+
+        if pos_T >= 69 and pos_L >= 69:
+            print("IT'S A TIE.")
+            break
+        elif pos_T >= 69:
+            pos_T = 69
+            print("TORTOISE WINS! || VAY!!!")
+            break
+        elif pos_L >= 69:
+            pos_L = 69
+            print("HARE WINS || YUCH!!!")
+            break
+
+variabilita_ambientale()
+>>>>>>> 9081c67 (lol)
