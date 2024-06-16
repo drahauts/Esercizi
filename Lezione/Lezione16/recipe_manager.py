@@ -83,6 +83,23 @@ class RecipeManager:
         else:
             return f'Errore.'
         
+    def search_recipe_by_ingredient(self, ingredient: int):
+        """
+        Trova e restituisce tutte le ricette che contengono un determinato ingrediente.
+        Restituisce un elenco di ricette o un messaggio di errore se nessuna ricetta contiene l'ingrediente.
+        """
+        keys = []
+        for key, value in self.lista_ricette.items():
+            for v in value:
+                if v == ingredient:
+                    keys.append(key)
+        
+        if len(keys) > 0:
+            return f'Le ricette che contengono ingrediente \'{ingredient}\':\n{keys}'
+        else:
+            return 'Errore. Nessuna ricetta contiene l\'ingrediente.'       
+                    
+        pass
 
 manager = RecipeManager()
 print(manager.create_recipe('Margherita', ['acqua', 'farina', 'pomodoro', 'mozzarella']))
@@ -90,3 +107,4 @@ print(manager.create_recipe('Diavola', ['acqua', 'farina', 'salame']))
 print(manager.list_recipes())
 print(manager.list_ingredient('Diavola'))
 print(manager.list_ingredient('Margherita'))
+print(manager.search_recipe_by_ingredient('acqua'))
