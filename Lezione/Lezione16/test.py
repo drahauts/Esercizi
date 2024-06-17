@@ -91,10 +91,7 @@
 # print(manager.list_ingredient('Diavola'))
 # print(manager.list_ingredient('Margherita'))
 
-my_D = {'Pom' : ['acqua', 'vino', 'olio']}
-ingredient = 'vino'
-
-if ingredient in my_D.values():
-    print(ingredient)
-else:
-    print(my_D.values())
+reviews = [1, 5, 5, 4, 2]
+print((sum(reviews) / len(reviews)))
+print(round((sum(reviews) / len(reviews))))
+print('lol')
