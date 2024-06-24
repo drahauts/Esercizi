@@ -1,0 +1,59 @@
+Dipartimento
+
+Attributi:
+nome: String
+indirizzo: String
+Relazioni:
+Associazione con Direttore (1 a 1): Ogni dipartimento ha un direttore.
+Associazione con Ordine (1 a *): Ogni dipartimento può stipulare più ordini.
+
+----------------------------------------------------------------------------
+Direttore
+
+Attributi:
+nome: String
+cognome: String
+codice_fiscale: String
+data_di_nascita: Date
+luogo_di_nascita: String
+anni_servizio: Integer
+Relazioni:
+Associazione con Dipartimento (1 a 1): Ogni direttore dirige un dipartimento
+
+----------------------------------------------------------------------------
+Fornitore
+
+Attributi:
+ragione_sociale: String
+partita_iva: String
+indirizzo: String
+numero_telefono: String
+email: String
+Relazioni:
+Associazione con Ordine (1 a *): Ogni fornitore può ricevere più ordini.
+Associazione con Fattura (1 a *): Ogni fornitore può emettere più fatture.
+
+----------------------------------------------------------------------------
+Ordine
+
+Attributi:
+data_stipula: Date
+descrizione: String
+importo_imponibile: Float
+aliquota_iva: Float
+stato: String
+Relazioni:
+Associazione con Dipartimento (* a 1): Ogni ordine è stipulato da un dipartimento.
+Associazione con Fornitore (* a 1): Ogni ordine è fatto a un fornitore.
+Associazione con Fattura (1 a 1): Ogni ordine può avere una fattura associata.
+
+----------------------------------------------------------------------------
+Fattura
+
+Attributi:
+numero_fattura: String
+data_emissione: Date
+importo_totale: Float
+Relazioni:
+Associazione con Ordine (1 a 1): Ogni fattura è associata a un ordine.
+Associazione con Fornitore (* a 1): Ogni fattura è emessa da un fornitore.
