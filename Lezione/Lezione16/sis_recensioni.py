@@ -33,15 +33,15 @@ class Media:
         "Bello" se il voto medio si avvicina a 4, "Grandioso" se il voto medio si avvicina a 5.
         """
         if self.getMedia() == 1:
-            print(f'Terribile')
+            return 'Terribile'
         elif self.getMedia() == 2:
-            print('Brutto')
+            return 'Brutto'
         elif self.getMedia() == 3:
-            print('Normale')
+            return 'Normale'
         elif self.getMedia() == 4:
-            print('Bello')
+            return 'Bello'
         elif self.getMedia() == 5:
-            print('Grandioso')
+            return 'Grandioso'
 
     def ratePercentage(self, voto: int):
         """
@@ -56,5 +56,5 @@ class Media:
 
 media = Media('Lol', [1, 3, 5, 5, 5, 5, 4, 2])
 print(media.getMedia())
-media.getRate()
+print(media.getRate())
 print(media.ratePercentage(5))
