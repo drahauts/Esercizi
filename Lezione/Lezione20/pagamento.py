@@ -50,6 +50,11 @@ class PagamentoContanti(Pagamento):
         cash = [500, 200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.2, 0.1]
         print(f'{self.get_importo():.2f} euro da pagare in contanti con:')
 
+pagamento_contanti = PagamentoContanti()
+pagamento_contanti.set_importo(50.50)
+print(pagamento_contanti.dettagliPagamento())
+pagamento_contanti.inPezziDa()
+
 
 class PagamentoCartaDiCredito(Pagamento):
     """
@@ -72,17 +77,14 @@ class PagamentoCartaDiCredito(Pagamento):
         Numero della carta: 1234567890123456
         """
         print(
-            f'Pagamento di: €{self.__importo_pagamento:.2f} effettuato con la carta di credito'
+            f'Pagamento di: €{self.get_importo():.2f} effettuato con la carta di credito'
         )
         
         #return f'Pagamento di: €{self.get_importo():.2f} effettuato con la carta di credito\nNome sulla carta: {self.titolare}\nData di scadenza: {self.data_scadenza}\nNumero della carta: {self.num_carta}'
         
     
     
-pagamento_contanti = PagamentoContanti()
-pagamento_contanti.set_importo(50.50)
-print(pagamento_contanti.dettagliPagamento())
-pagamento_contanti.inPezziDa()
+
 
 pagamento_carta = PagamentoCartaDiCredito('Marco Rossi', '11/24', 12345661234)
 print(pagamento_carta.dettagliPagamento())
