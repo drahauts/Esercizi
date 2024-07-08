@@ -5,6 +5,7 @@ class Animal:
 
     def __str__(self) -> str:
         return f"Species = {self.specie}, age = {self.age}"
+    
 class Person(Animal):
     def __init__(self, name: str, surname: str, cf: str, specie :str, age: int) -> None:
         super().__init__(self.specie, self.age)
