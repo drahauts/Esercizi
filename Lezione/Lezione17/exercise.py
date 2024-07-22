@@ -12,3 +12,48 @@ getLastname(): consente di ritornare il cognome di una persona.
 getAge(): consente di ritornare l'età di una persona.
 greet(): stampa il seguente saluto "Ciao, sono nome cognome! Ho età anni!"
 """
+
+class Persona:
+    def __init__(self, first_name, last_name):
+        if isinstance(first_name, str) and isinstance(last_name, str):
+            self.__first_name = first_name
+            self.__last_name = last_name
+            self.__age = 0
+        else:
+            if not isinstance(first_name, str):
+                self.__first_name = None
+                print("Il nome inserito non è una stringa!")
+            if not isinstance(last_name, str):
+                self.__last_name = None
+                print("Il cognome inserito non è una stringa!")
+            self.__age = None
+
+    def setName(self, first_name):
+        if isinstance(first_name, str):
+            self.__first_name = first_name
+        else:
+            print("Il nome inserito non è una stringa!")
+
+    def setLastName(self, last_name):
+        if isinstance(last_name, str):
+            self.__last_name = last_name
+        else:
+            print("Il cognome inserito non è una stringa!")
+
+    def setAge(self, age):
+        if isinstance(age, int):
+            self.__age = age
+        else:
+            print("L'età deve essere un numero intero!")
+
+    def getName(self):
+        return self.__first_name
+
+    def getLastName(self):
+        return self.__last_name
+
+    def getAge(self):
+        return self.__age
+
+    def greet(self):
+        print(f"Ciao, sono {self.__first_name} {self.__last_name}! Ho {self.__age} anni!")
