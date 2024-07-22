@@ -9,14 +9,16 @@ print(classifica_numeri([1, 2, 3, 4, 5, 6]))            {'pari': [2, 4, 6], 'dis
 """
 
 def classifica_numeri(lista: int) -> dict[str:list[int]]:
-    d = {'pari' : [],
-     'dispari' : []}
+    dict_d = {
+        'pari' : [],
+        'dispari' : []
+    }
     for l in lista:
         if l % 2 == 0:
-            d['pari'].append(l)
+            dict_d['pari'].append(l)
         else:
-            d['dispari'].append(l)
-
+            dict_d['dispari'].append(l)
+    
     return d
 
 print(classifica_numeri([1, 2, 3, 4, 5, 6]))
