@@ -11,10 +11,11 @@ print(check_combination(True, False, True))             Operazione permessa
 print(check_combination(False, True, False))            Operazione negata
 """
 def check_combination(conditionA: bool, conditionB: bool, conditionC: bool):
-    if conditionA == True or (conditionB and conditionC == True):
-        return 'Operazione permessa'
-    else:
-        return 'Operazione negata'
+    return 'Operazione permessa' if conditionA == True or (conditionB and conditionC == True) else 'Operazione negata'
+    # if conditionA == True or (conditionB and conditionC == True):
+    #     return 'Operazione permessa'
+    # else:
+    #     return 'Operazione negata'
     
     
 print(check_combination(True, False, True))

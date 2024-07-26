@@ -9,12 +9,14 @@ print(filtra_e_mappa({'Penna': 15.0, 'Zaino': 50.0, 'Quaderno': 22.0}))         
 """
 
 def filtra_e_mappa(prodotti: dict[str:float]) -> dict[str:float]:
-    new_d = {}
-    for k, v in prodotti.items():
-        if v >= 20:
-            new_d[k] = v - (v / 10)
+    # new_d = {}
+    # for k, v in prodotti.items():
+    #     if v >= 20:
+    #         new_d[k] = v - (v / 10)
 
+    # return new_d
+    new_d = {k: v - (v/10) for k,v in prodotti.items() if v >= 20}
+    
     return new_d
-
 
 print(filtra_e_mappa({'Penna': 15.0, 'Zaino': 50.0, 'Quaderno': 22.0}))

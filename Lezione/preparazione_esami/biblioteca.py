@@ -17,9 +17,6 @@ class Book:
         else:
             print(f'Il libro "{self.title}" non è attualmente in prestito.')
 
-    def __repr__(self):
-        return f'Book(book_id={self.book_id}, title="{self.title}", author="{self.author}")'
-
 class Member:
     def __init__(self, member_id: str, name: str) -> None:
         self.member_id = member_id
@@ -69,7 +66,7 @@ class Library:
                 print(f'Il libro "{book.title}" è già in prestito.')
             else:
                 book.borrow()
-                member.borrow_book(book)
+                member.borrow_book(book_id)
     
     def return_book(self, member_id: str, book_id: str):
         if member_id not in self.members or book_id not in self.books:

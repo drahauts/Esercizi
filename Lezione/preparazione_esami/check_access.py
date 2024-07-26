@@ -7,8 +7,12 @@ La funzione ritorna "Accesso consentito" oppure "Accesso negato".
 """ 
 
 def check_access(username: str, password: str, is_active: bool) -> str:
+        return 'Acceso consentito' if username == 'admin' and password == '12345' and is_active == True else 'Accesso negato'
+    # if username == "admin" and password == "12345" and is_active == True:
+    #     return "Accesso consentito"
+    # else:
+    #     return "Accesso negato"
+
     
-    if username == "admin" and password == "12345" and is_active == True:
-        return "Accesso consentito"
-    else:
-        return "Accesso negato"
+print(check_access('admin', '12345', True))
+print(check_access('admin', '12345', False))

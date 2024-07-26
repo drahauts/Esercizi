@@ -71,7 +71,8 @@ class RecipeManager():
         """
         list_recipes(): Elenca tutte le ricette esistenti.
         """
-        return [k for k in self.ricette.keys()]
+        for k in self.ricette.keys():
+            return list(str(k))
     
     def list_ingredients(self, recipe_name: str):
         if recipe_name not in self.ricette:
@@ -97,12 +98,6 @@ print(manager.add_ingredient("Pizza Margherita", "Basilico"))
 print(manager.remove_ingredient("Pizza Margherita", "Acqua"))
 print(manager.update_ingredient("Pizza Margherita", "Mozzarella", "Mozzarella di Bufala"))
 print(manager.list_ingredients("Pizza Margherita"))
+print('prova')
 print(manager.search_recipe_by_ingredient('Basilico'))
 
-	
-manager2 = RecipeManager()
-print(manager2.create_recipe("Torta di mele", ["Farina", "Uova", "Mele"]))
-print(manager2.add_ingredient("Torta di mele", "Zucchero"))
-print(manager2.list_recipes()) # ['Torta di mele']
-print(manager2.list_ingredients("Torta di mele"))
-print(manager2.search_recipe_by_ingredient("Uova"))

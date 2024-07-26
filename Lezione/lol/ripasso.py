@@ -1,87 +1,104 @@
-from docx import Document
-from docx.shared import Inches
-import pyttsx3
+class Book:
+    def __init__(self, book_id: str, title: str, author: str) -> None:
+        self.book_id = book_id
+        self.title = title
+        self.author = author
+        self.is_borrowed = False
+    
+    def borrow(self):
+        if not self.is_borrowed:
+            self.is_borrowed = True
+        else:
+            return 'Errore'
 
-pyttsx3.speak('Hello')
+    def return_book(self):
+        if self.is_borrowed:
+            self.is_borrowed = False
+        else:
+            return 'Errore.'
 
+class Member:
+    def __init__(self, member_id: str, name: str) -> None:
+        self.member_id = member_id
+        self.name = name
+        self.borrowed_books:list[Book] = []
+    
+    def borrow_book(self, book: Book):
+        if not book.is_borrowed:
+            book.borrow()
+            self.borrowed_books.append(book)
+        else:
+            return 'Errore'
+    
+    def return_book(self, book: Book):
+        if book in self.borrowed_books:
+            self.borrowed_books.remove(book)
+            book.return_book()
+        else:
+            return 'Errore.'
 
-document = Document()
+class Library:
+    def __init__(self) -> None:
+        self.books: dict[str, Book] = {}
+        self.members: dict[str, Member] = {}
 
-#  profile picture
-document.add_picture(
-    "bobdylan.jpg",
-    width= Inches(2.0)
-)
+    def add_book(self, book_id: str, title: str, author: str):
+        if book_id not in self.books:
+            book = Book(book_id, title, author)
+            self.books[book_id] = book
+        else:
+            raise ValueError('Errore.')
+    
+    def register_member(self, member_id: str, name: str):
+        if member_id not in self.members:
+            member = Member(member_id, name)
+            self.members[member_id] = member
+        else:
+            raise ValueError('Errore.')
+    
+    def borrow_book(self, member_id: str, book_id: str):
+        if member_id in self.members and book_id in self.books:
+            member = self.members[member_id]
+            book = self.books[book_id]
+            if not book.is_borrowed:
+                member.borrow_book(book)
+            else:
+                raise ValueError('Book is already borrowed.')
+        else:
+            raise ValueError('Book not found')
+    
+    def return_book(self,member_id: str, book_id: str):
+        if member_id in self.members and book_id in self.books:
+            member = self.members[member_id]
+            book = self.books[book_id]
+            if book in member.borrowed_books:
+                member.return_book(book)
+            else:
+                raise ValueError('Book not borrowed by this member.')
+        else:
+            return ValueError('Book not borrowed by this member')
+        
+    def get_borrowed_books(self, member_id: str):
+        if member_id in self.members:
+            return [book.title for book in self.members[member_id].borrowed_books]
+        else:
+            return []
+        
 
-#  name phone number and email details
-name = input("What is your name? ")
-number_phone = input("What is your phone number? ")
-email = input("What is your email? ")
+library = Library()
 
+library.add_book("B001", "The Great Gatsby", "F. Scott Fitzgerald")
+library.add_book("B002", "1984", "George Orwell")
+library.add_book("B003", "To Kill a Mockingbird", "Harper Lee")
 
-document.add_paragraph(
-    f'{name} | {number_phone} | {email}'
-) 
+# Register members
+library.register_member("M001", "Alice")
+library.register_member("M002", "Bob")
+library.register_member("M003", "Charlie")
 
-# about me
-document.add_heading("About me")
-document.add_paragraph(
-    input("Tell about yourself? ")
-)
+# Borrow books
+library.borrow_book("M001", "B001")
+library.borrow_book("M002", "B002")
 
-# work experience
-document.add_heading("Work experience")
-p = document.add_paragraph()
-
-company = input('Enter Company ')
-from_date = input('From Date ')
-to_date = input('To Date ')
-
-p.add_run(company + ' ').bold = True
-p.add_run(from_date + '-' + to_date + '\n').italic = True
-
-
-experiance_details = input(f'Experienc in {company} ')
-p.add_run(experiance_details)
-
-# more experiences
-while True:
-    more_experinces = input(
-        'Do you have more experinces? Yes or No ')
-    if more_experinces.lower() == 'yes':
-        p = document.add_paragraph()
-
-        company = input('Enter Company ')
-        from_date = input('From Date ')
-        to_date = input('To Date ')
-
-        p.add_run(company + ' ').bold = True
-        p.add_run(from_date + '-' + to_date + '\n').italic = True
-
-        experiance_details = input(f'Experienc in {company} ')
-        p.add_run(experiance_details)
-    else:
-        break
-
-# personal skills
-document.add_heading("Skills")
-skill = input('Enter skill ')
-p = document.add_paragraph(skill)
-p.style = 'List Bullet'
-
-while True:
-    more_skills = input('You have another skills? Yes or No ')
-    if more_skills.lower() == 'yes':
-        skill = input('Enter skill ')
-        p = document.add_paragraph(skill)
-        p.style = 'List Bullet'
-    else:
-        break
-
-# footer
-section = document.sections[0]
-footer = section.footer
-p = footer.paragraphs[0]
-p.text = 'CV generated using Amigoscode and Intuiut QuickBooks'
-
-document.save('cv.docx')
+print(library.get_borrowed_books("M001"))  # Expected output: ['The Great Gatsby']
+print(library.get_borrowed_books("M002"))  # Expected output: ['1984']
